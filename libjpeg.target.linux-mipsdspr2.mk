@@ -67,7 +67,10 @@ LOCAL_SRC_FILES := \
 	third_party/libjpeg_turbo/jquant1.c \
 	third_party/libjpeg_turbo/jquant2.c \
 	third_party/libjpeg_turbo/jutils.c \
-	third_party/libjpeg_turbo/jsimd_none.c
+	third_party/libjpeg_turbo/simd/jsimd_mips.c \
+	third_party/libjpeg_turbo/simd/jsimd_mips_dspr2.S
+
+
 
 # Flags passed to both C and C++ files.
 MY_CFLAGS_Debug := \
@@ -100,6 +103,7 @@ MY_CFLAGS_Debug := \
 	-Wno-sequence-point \
 	-Os \
 	-g \
+	-mdspr2 \
 	-gdwarf-4 \
 	-fdata-sections \
 	-ffunction-sections \
@@ -167,6 +171,7 @@ LOCAL_CPPFLAGS_Debug := \
 	-Wno-narrowing \
 	-Wno-literal-suffix \
 	-Wno-non-virtual-dtor \
+	-mdspr2 \
 	-Wno-sign-promo \
 	-Wno-non-virtual-dtor
 
@@ -187,6 +192,7 @@ MY_CFLAGS_Release := \
 	-ffunction-sections \
 	-funwind-tables \
 	-g \
+	-mdspr2 \
 	-fstack-protector \
 	-fno-short-enums \
 	-finline-limit=64 \
@@ -265,6 +271,7 @@ LOCAL_CPPFLAGS_Release := \
 	-Wno-deprecated \
 	-Wno-uninitialized \
 	-std=gnu++11 \
+	-mdspr2 \
 	-Wno-narrowing \
 	-Wno-literal-suffix \
 	-Wno-non-virtual-dtor \
